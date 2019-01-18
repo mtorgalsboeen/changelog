@@ -196,6 +196,36 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Changelog.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Content.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContentType.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerProduct.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FinalModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FinalModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FinalModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,11 +241,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\user.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>FinalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usertype.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>FinalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -228,6 +261,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\FinalModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FinalModel.edmx</DependentUpon>
+      <LastGenOutput>FinalModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FinalModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FinalModel.edmx</DependentUpon>
+      <LastGenOutput>FinalModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -268,6 +311,13 @@
     </EntityDeploy>
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\FinalModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FinalModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FinalModel.edmx.diagram">
+      <DependentUpon>FinalModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

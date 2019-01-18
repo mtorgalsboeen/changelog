@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b8fd7d83fd744ca8b7eb5c8db385611" Name="Diagram1">
+        <EntityTypeShape EntityType="FinalModelNamespace.Changelog" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModelNamespace.Content" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModelNamespace.ContentType" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModelNamespace.Customer" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModelNamespace.CustomerProduct" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModelNamespace.Product" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModelNamespace.user" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModelNamespace.Usertype" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="FinalModelNamespace.FK_ChangelogAuthor" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.FK_ChangelogProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.FK_ContentChangelog" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.FK_ContentContentType" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.FK_CPCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.FK_UserCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.FK_CPProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.FK_UserUsertype" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.CustomerProductUser" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModelNamespace.ProductUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

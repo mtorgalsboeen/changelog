@@ -12,30 +12,25 @@ namespace ChangelogTest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
+        public Product()
         {
             this.Changelogs = new HashSet<Changelog>();
             this.CustomerProducts = new HashSet<CustomerProduct>();
-            this.Products = new HashSet<Product>();
+            this.users = new HashSet<user>();
         }
     
-        public int UID { get; set; }
-        public string Email { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public int UsertypeID { get; set; }
-        public Nullable<int> CustomerID { get; set; }
+        public int ProductID { get; set; }
+        public byte[] ProductName { get; set; }
+        public string ProductDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Changelog> Changelogs { get; set; }
-        public virtual Customer Customer { get; set; }
-        public virtual Usertype Usertype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerProduct> CustomerProducts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<user> users { get; set; }
     }
 }

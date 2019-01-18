@@ -12,18 +12,21 @@ namespace ChangelogTest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usertype
+    public partial class Changelog
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usertype()
+        public Changelog()
         {
-            this.users = new HashSet<user>();
+            this.Contents = new HashSet<Content>();
         }
     
-        public int UsertypeID { get; set; }
-        public string UsertypeName { get; set; }
+        public int ChangelogID { get; set; }
+        public int ProductID { get; set; }
+        public int Author { get; set; }
     
+        public virtual user user { get; set; }
+        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<Content> Contents { get; set; }
     }
 }
