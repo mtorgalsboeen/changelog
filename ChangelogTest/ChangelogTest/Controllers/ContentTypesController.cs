@@ -13,11 +13,18 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    /// <summary>
+    /// The controller for ContentTypes
+    /// </summary>
     public class ContentTypesController : ApiController
     {
         private FinalModel db = new FinalModel();
 
         // GET: api/ContentTypes
+        /// <summary>
+        /// Gets all ContentTypes
+        /// </summary>
+        /// <returns>A list of ContentTypes.</returns>
         public IQueryable<ContentType> GetContentTypes()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -25,6 +32,11 @@ namespace ChangelogTest.Controllers
         }
 
         // GET: api/ContentTypes/5
+        /// <summary>
+        /// Gets the ContentType with the specified ID.
+        /// </summary>
+        /// <param name="id">The ContentTypes ID.</param>
+        /// <returns>An HTTP response</returns>
         [ResponseType(typeof(ContentType))]
         public async Task<IHttpActionResult> GetContentType(int id)
         {
@@ -38,6 +50,12 @@ namespace ChangelogTest.Controllers
         }
 
         // PUT: api/ContentTypes/5
+        /// <summary>
+        /// Updates the ContentType with the specified ID.
+        /// </summary>
+        /// <param name="id">The ContentTypes ID.</param>
+        /// <param name="contentType">A ContentType object.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutContentType(int id, ContentType contentType)
         {
@@ -73,6 +91,11 @@ namespace ChangelogTest.Controllers
         }
 
         // POST: api/ContentTypes
+        /// <summary>
+        /// Inserts a new ContentType.
+        /// </summary>
+        /// <param name="contentType">A ContentType object.</param>
+        /// <returns>An HTTP response.</returns>
         [ResponseType(typeof(ContentType))]
         public async Task<IHttpActionResult> PostContentType(ContentType contentType)
         {
@@ -88,6 +111,11 @@ namespace ChangelogTest.Controllers
         }
 
         // DELETE: api/ContentTypes/5
+        /// <summary>
+        /// Deletes the ContentType with the specified ID.
+        /// </summary>
+        /// <param name="id">The ContentTypes ID.</param>
+        /// <returns>An HTTP response.</returns>
         [ResponseType(typeof(ContentType))]
         public async Task<IHttpActionResult> DeleteContentType(int id)
         {

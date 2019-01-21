@@ -13,11 +13,18 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    /// <summary>
+    /// Controller for Changelogs.
+    /// </summary>
     public class ChangelogsController : ApiController
     {
         private FinalModel db = new FinalModel();
 
         // GET: api/Changelogs
+        /// <summary>
+        /// Gets all Changelogs
+        /// </summary>
+        /// <returns>A list of Changelogs.</returns>
         public IQueryable<Changelog> GetChangelogs()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -26,6 +33,11 @@ namespace ChangelogTest.Controllers
         }
 
         // GET: api/Changelogs/5
+        /// <summary>
+        /// Gets the Changelog with the specified ID.
+        /// </summary>
+        /// <param name="id">The ID of the Changelog</param>
+        /// <returns>An HTTP result of type Changelog</returns>
         [ResponseType(typeof(Changelog))]
         public async Task<IHttpActionResult> GetChangelog(int id)
         {
@@ -39,6 +51,12 @@ namespace ChangelogTest.Controllers
         }
 
         // PUT: api/Changelogs/5
+        /// <summary>
+        /// Updates the Changelog with the specified ID.
+        /// </summary>
+        /// <param name="id">The ID of the Changelog.</param>
+        /// <param name="changelog">A Changelog object.</param>
+        /// <returns>A HTTP result.</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutChangelog(int id, Changelog changelog)
         {
@@ -74,6 +92,11 @@ namespace ChangelogTest.Controllers
         }
 
         // POST: api/Changelogs
+        /// <summary>
+        /// Inserts a new Changelog.
+        /// </summary>
+        /// <param name="changelog">A Changelog object.</param>
+        /// <returns>An HTTP result of type Changelog</returns>
         [ResponseType(typeof(Changelog))]
         public async Task<IHttpActionResult> PostChangelog(Changelog changelog)
         {
@@ -89,6 +112,11 @@ namespace ChangelogTest.Controllers
         }
 
         // DELETE: api/Changelogs/5
+        /// <summary>
+        /// Deletes the Changelog with the specified ID.
+        /// </summary>
+        /// <param name="id">The ID of the Changelog</param>
+        /// <returns>An HTTP respose of type Changelog</returns>
         [ResponseType(typeof(Changelog))]
         public async Task<IHttpActionResult> DeleteChangelog(int id)
         {

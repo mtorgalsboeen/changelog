@@ -13,11 +13,18 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    /// <summary>
+    /// The controller for Products related to specific Customers.
+    /// </summary>
     public class CustomerProductsController : ApiController
     {
         private FinalModel db = new FinalModel();
 
         // GET: api/CustomerProducts
+        /// <summary>
+        /// Gets all CustomerProducts.
+        /// </summary>
+        /// <returns>A list of CustomerProducts.</returns>
         public IQueryable<CustomerProduct> GetCustomerProducts()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -25,6 +32,11 @@ namespace ChangelogTest.Controllers
         }
 
         // GET: api/CustomerProducts/5
+        /// <summary>
+        /// Gets the CustomerProduct with the specified ID.
+        /// </summary>
+        /// <param name="id">The CustomerProduct ID.</param>
+        /// <returns>An HTTP response.</returns>
         [ResponseType(typeof(CustomerProduct))]
         public async Task<IHttpActionResult> GetCustomerProduct(int id)
         {
@@ -38,6 +50,12 @@ namespace ChangelogTest.Controllers
         }
 
         // PUT: api/CustomerProducts/5
+        /// <summary>
+        /// Updates the CustomerProduct with the specified ID.
+        /// </summary>
+        /// <param name="id">The CustomerProducts ID.</param>
+        /// <param name="customerProduct">A CustomerProduct object.</param>
+        /// <returns>An HTTP result.</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutCustomerProduct(int id, CustomerProduct customerProduct)
         {
@@ -88,6 +106,11 @@ namespace ChangelogTest.Controllers
         }
 
         // DELETE: api/CustomerProducts/5
+        /// <summary>
+        /// Deletes the CustomerProduct with the specified ID.
+        /// </summary>
+        /// <param name="id">The CustomerProduct's ID.</param>
+        /// <returns>An HTTP response</returns>
         [ResponseType(typeof(CustomerProduct))]
         public async Task<IHttpActionResult> DeleteCustomerProduct(int id)
         {
