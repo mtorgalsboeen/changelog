@@ -13,7 +13,7 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
-    [RoutePrefix("api/users")]
+    [RoutePrefix("api")]
     public class usersController : ApiController
     {
 
@@ -23,10 +23,11 @@ namespace ChangelogTest.Controllers
         public IQueryable<user> Getusers()
         {
             db.Configuration.LazyLoadingEnabled = false;
-            return db.users;
+
+            return db.users.Where(u => u.UsertypeID == 2);
         }
 
-        [Route("getNames")]
+        [Route("users/getNames")]
         public List<String> getNames()
         {
             List<String> names = new List<string>();
@@ -36,6 +37,15 @@ namespace ChangelogTest.Controllers
             }
 
             return names;
+        }
+
+        [HttpGet]
+        [Route("users/GetUsersByCustomer/{customerID}")]
+        public List<user> GetUserByCustomer(int customerID)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+
+            return db.users.Where(u => u.CustomerID == customerID).ToList();
         }
 
         // GET: api/users/5
