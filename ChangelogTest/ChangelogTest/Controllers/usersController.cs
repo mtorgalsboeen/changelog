@@ -13,6 +13,9 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    /// <summary>
+    /// Controller for users
+    /// </summary>
     [RoutePrefix("api")]
     public class usersController : ApiController
     {
@@ -20,6 +23,10 @@ namespace ChangelogTest.Controllers
         private FinalModel db = new FinalModel();
 
         // GET: api/users
+        /// <summary>
+        /// Gets all the users except the admins
+        /// </summary>
+        /// <returns>A list of users</returns>
         public IQueryable<user> Getusers()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -27,18 +34,11 @@ namespace ChangelogTest.Controllers
             return db.users.Where(u => u.UsertypeID == 2);
         }
 
-        [Route("users/getNames")]
-        public List<String> getNames()
-        {
-            List<String> names = new List<string>();
-            foreach (user u in db.users)
-            {
-                names.Add(u.Fullname);
-            }
-
-            return names;
-        }
-
+        /// <summary>
+        /// Gets all users with a specific CustomerID
+        /// </summary>
+        /// <param name="customerID">The specific customerID</param>
+        /// <returns>A list of users</returns>
         [HttpGet]
         [Route("users/GetUsersByCustomer/{customerID}")]
         public List<user> GetUserByCustomer(int customerID)
@@ -49,6 +49,11 @@ namespace ChangelogTest.Controllers
         }
 
         // GET: api/users/5
+        /// <summary>
+        /// Gets a specific user
+        /// </summary>
+        /// <param name="id">ID of the specific user</param>
+        /// <returns>A HTTP result of type User</returns>
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Getuser(int id)
         {
@@ -64,6 +69,12 @@ namespace ChangelogTest.Controllers
         }
 
         // PUT: api/users/5
+        /// <summary>
+        /// Updates a specific user
+        /// </summary>
+        /// <param name="id">ID of the specific user</param>
+        /// <param name="user">The user object</param>
+        /// <returns>A HTTP result of type User</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> Putuser(int id, user user)
         {
@@ -99,6 +110,11 @@ namespace ChangelogTest.Controllers
         }
 
         // POST: api/users
+        /// <summary>
+        /// Creates a new user
+        /// </summary>
+        /// <param name="user">The user object</param>
+        /// <returns>A HTTP result of type User</returns>
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Postuser(user user)
         {
@@ -114,6 +130,11 @@ namespace ChangelogTest.Controllers
         }
 
         // DELETE: api/users/5
+        /// <summary>
+        /// Deletes a specific user
+        /// </summary>
+        /// <param name="id">ID of the specific user</param>
+        /// <returns>A HTTP result of type User</returns>
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Deleteuser(int id)
         {
@@ -138,6 +159,7 @@ namespace ChangelogTest.Controllers
             base.Dispose(disposing);
         }
 
+        //Checks if a user with a specific ID exists
         private bool userExists(int id)
         {
             return db.users.Count(e => e.UserID == id) > 0;

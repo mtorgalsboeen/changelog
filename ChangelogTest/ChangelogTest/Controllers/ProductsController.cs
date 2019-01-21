@@ -13,11 +13,18 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    /// <summary>
+    /// Controller for products
+    /// </summary>
     public class ProductsController : ApiController
     {
         private FinalModel db = new FinalModel();
 
         // GET: api/Products
+        /// <summary>
+        /// Gets all products
+        /// </summary>
+        /// <returns>A list of products</returns>
         public IQueryable<Product> GetProducts()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -25,9 +32,16 @@ namespace ChangelogTest.Controllers
         }
 
         // GET: api/Products/5
+        /// <summary>
+        /// Gets a specific product
+        /// </summary>
+        /// <param name="id">ID of the product</param>
+        /// <returns>A HTTP result of type Product</returns>
         [ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> GetProduct(int id)
         {
+            db.Configuration.LazyLoadingEnabled = false;
+
             Product product = await db.Products.FindAsync(id);
             if (product == null)
             {
@@ -38,6 +52,12 @@ namespace ChangelogTest.Controllers
         }
 
         // PUT: api/Products/5
+        /// <summary>
+        /// Updates a specific product
+        /// </summary>
+        /// <param name="id">ID of the product</param>
+        /// <param name="product">The product</param>
+        /// <returns>A HTTP result of type Product</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutProduct(int id, Product product)
         {
@@ -73,6 +93,11 @@ namespace ChangelogTest.Controllers
         }
 
         // POST: api/Products
+        /// <summary>
+        /// Creates a new product
+        /// </summary>
+        /// <param name="product">The product</param>
+        /// <returns>A HTTP result of type Product</returns>
         [ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> PostProduct(Product product)
         {
@@ -88,6 +113,11 @@ namespace ChangelogTest.Controllers
         }
 
         // DELETE: api/Products/5
+        /// <summary>
+        /// Deletes a specific product
+        /// </summary>
+        /// <param name="id">ID of the product</param>
+        /// <returns>A HTTP result of type Product</returns>
         [ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> DeleteProduct(int id)
         {
@@ -112,6 +142,7 @@ namespace ChangelogTest.Controllers
             base.Dispose(disposing);
         }
 
+        //Checks of Product with specific ID exists
         private bool ProductExists(int id)
         {
             return db.Products.Count(e => e.ProductID == id) > 0;

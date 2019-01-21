@@ -13,11 +13,18 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    /// <summary>
+    /// Controller for accesses to the different products
+    /// </summary>
     public class UserAccessProductsController : ApiController
     {
         private FinalModel db = new FinalModel();
 
         // GET: api/UserAccessProducts
+        /// <summary>
+        /// Gets all Accesses
+        /// </summary>
+        /// <returns>A list of all the accesses</returns>
         public IQueryable<UserAccessProduct> GetUserAccessProducts()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -25,6 +32,11 @@ namespace ChangelogTest.Controllers
         }
 
         // GET: api/UserAccessProducts/5
+        /// <summary>
+        /// Gets a specific access
+        /// </summary>
+        /// <param name="id">ID of the specific access</param>
+        /// <returns>A HTTP result of type UserAccessProduct</returns>
         [ResponseType(typeof(UserAccessProduct))]
         public async Task<IHttpActionResult> GetUserAccessProduct(int id)
         {
@@ -38,6 +50,12 @@ namespace ChangelogTest.Controllers
         }
 
         // PUT: api/UserAccessProducts/5
+        /// <summary>
+        /// Updates a specific access
+        /// </summary>
+        /// <param name="id">ID of the specific access</param>
+        /// <param name="userAccessProduct">The access object</param>
+        /// <returns>A HTTP result of type UserAccessProduct</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUserAccessProduct(int id, UserAccessProduct userAccessProduct)
         {
@@ -73,6 +91,11 @@ namespace ChangelogTest.Controllers
         }
 
         // POST: api/UserAccessProducts
+        /// <summary>
+        /// Creates a new access
+        /// </summary>
+        /// <param name="userAccessProduct">The access object</param>
+        /// <returns>A HTTP result of type UserAccessProduct</returns>
         [ResponseType(typeof(UserAccessProduct))]
         public async Task<IHttpActionResult> PostUserAccessProduct(UserAccessProduct userAccessProduct)
         {
@@ -88,6 +111,11 @@ namespace ChangelogTest.Controllers
         }
 
         // DELETE: api/UserAccessProducts/5
+        /// <summary>
+        /// Deletes a specific access
+        /// </summary>
+        /// <param name="id">ID of the specific access</param>
+        /// <returns>A HTTP result of type UserAccessProduct</returns>
         [ResponseType(typeof(UserAccessProduct))]
         public async Task<IHttpActionResult> DeleteUserAccessProduct(int id)
         {
@@ -103,6 +131,7 @@ namespace ChangelogTest.Controllers
             return Ok(userAccessProduct);
         }
 
+        //
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -112,6 +141,7 @@ namespace ChangelogTest.Controllers
             base.Dispose(disposing);
         }
 
+        //Checks if access of specififc ID exists
         private bool UserAccessProductExists(int id)
         {
             return db.UserAccessProducts.Count(e => e.UserAccessProductID == id) > 0;
