@@ -13,11 +13,18 @@ using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    /// <summary>
+    /// Controller for  usertypes
+    /// </summary>
     public class UsertypesController : ApiController
     {
         private FinalModel db = new FinalModel();
 
         // GET: api/Usertypes
+        /// <summary>
+        /// Gets all the usertypes
+        /// </summary>
+        /// <returns>A list of usertypes</returns>
         public IQueryable<Usertype> GetUsertypes()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -25,6 +32,11 @@ namespace ChangelogTest.Controllers
         }
 
         // GET: api/Usertypes/5
+        /// <summary>
+        /// Gets a specific usertype
+        /// </summary>
+        /// <param name="id">ID of the specific usertype</param>
+        /// <returns>A HTTP result of type Usertype</returns>
         [ResponseType(typeof(Usertype))]
         public async Task<IHttpActionResult> GetUsertype(int id)
         {
@@ -40,6 +52,12 @@ namespace ChangelogTest.Controllers
         }
 
         // PUT: api/Usertypes/5
+        /// <summary>
+        /// Updates a specifc usertype
+        /// </summary>
+        /// <param name="id">ID of the specific usertype</param>
+        /// <param name="usertype">The usertype object</param>
+        /// <returns>A HTTP result of type Usertype</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUsertype(int id, Usertype usertype)
         {
@@ -75,6 +93,11 @@ namespace ChangelogTest.Controllers
         }
 
         // POST: api/Usertypes
+        /// <summary>
+        /// Creates a new usertype
+        /// </summary>
+        /// <param name="usertype">The usertype object</param>
+        /// <returns>A HTTP result of type Usertype</returns>
         [ResponseType(typeof(Usertype))]
         public async Task<IHttpActionResult> PostUsertype(Usertype usertype)
         {
@@ -90,6 +113,11 @@ namespace ChangelogTest.Controllers
         }
 
         // DELETE: api/Usertypes/5
+        /// <summary>
+        /// Deletes a specific usertype
+        /// </summary>
+        /// <param name="id">ID of the specific usertype</param>
+        /// <returns>A HTTP result of type Usertype</returns>
         [ResponseType(typeof(Usertype))]
         public async Task<IHttpActionResult> DeleteUsertype(int id)
         {
@@ -114,6 +142,7 @@ namespace ChangelogTest.Controllers
             base.Dispose(disposing);
         }
 
+        //Checks if a usertype with a specific ID exists
         private bool UsertypeExists(int id)
         {
             return db.Usertypes.Count(e => e.UsertypeID == id) > 0;
