@@ -14,19 +14,11 @@ namespace ChangelogTest.Models
     
     public partial class CustomerProduct
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CustomerProduct()
-        {
-            this.users = new HashSet<user>();
-        }
-    
         public int CustomerID { get; set; }
         public int ProductID { get; set; }
         public int CustomerProductID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
     }
 }

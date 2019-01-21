@@ -189,10 +189,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ChangelogsController.cs" />
+    <Compile Include="Controllers\ContentsController.cs" />
+    <Compile Include="Controllers\ContentTypesController.cs" />
+    <Compile Include="Controllers\CustomerProductsController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\UserAccessProductsController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Controllers\UsertypesController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,8 +223,8 @@
       <DependentUpon>FinalModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FinalModel.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>FinalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FinalModel.Designer.cs">
@@ -226,25 +232,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FinalModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>FinalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserAccessProduct.cs">
       <DependentUpon>FinalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usertype.cs">
@@ -271,16 +265,6 @@
       <DependentUpon>FinalModel.edmx</DependentUpon>
       <LastGenOutput>FinalModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -304,13 +288,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Models\Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <EntityDeploy Include="Models\FinalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -342,6 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

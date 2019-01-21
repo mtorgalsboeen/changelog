@@ -13,10 +13,10 @@ namespace ChangelogTest.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class FinalModel : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public FinalModel()
+            : base("name=FinalModel")
         {
         }
     
@@ -31,6 +31,7 @@ namespace ChangelogTest.Models
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CustomerProduct> CustomerProducts { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<UserAccessProduct> UserAccessProducts { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<Usertype> Usertypes { get; set; }
     }

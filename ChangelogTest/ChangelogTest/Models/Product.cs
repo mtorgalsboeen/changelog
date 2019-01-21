@@ -19,11 +19,11 @@ namespace ChangelogTest.Models
         {
             this.Changelogs = new HashSet<Changelog>();
             this.CustomerProducts = new HashSet<CustomerProduct>();
-            this.users = new HashSet<user>();
+            this.UserAccessProducts = new HashSet<UserAccessProduct>();
         }
     
         public int ProductID { get; set; }
-        public byte[] ProductName { get; set; }
+        public string ProductName { get; set; }
         public string ProductDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -31,6 +31,6 @@ namespace ChangelogTest.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerProduct> CustomerProducts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<UserAccessProduct> UserAccessProducts { get; set; }
     }
 }

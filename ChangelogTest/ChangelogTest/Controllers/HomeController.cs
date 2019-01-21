@@ -10,7 +10,19 @@ namespace ChangelogTest.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "eSmart Systems Changelog System ASP.NET API";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
 
             return View();
         }

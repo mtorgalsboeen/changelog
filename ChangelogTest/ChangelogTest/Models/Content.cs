@@ -14,6 +14,7 @@ namespace ChangelogTest.Models
     
     public partial class Content
     {
+        public int ContentID { get; set; }
         public int ChangelogID { get; set; }
         public int ContentTypeID { get; set; }
         public string Content1 { get; set; }

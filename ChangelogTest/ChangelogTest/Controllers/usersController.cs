@@ -6,27 +6,45 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ChangelogTest.Models;
 
 namespace ChangelogTest.Controllers
 {
+    [RoutePrefix("api/users")]
     public class usersController : ApiController
     {
-        private TestEntities1 db = new TestEntities1();
+
+        private FinalModel db = new FinalModel();
 
         // GET: api/users
         public IQueryable<user> Getusers()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.users;
+        }
+
+        [Route("getNames")]
+        public List<String> getNames()
+        {
+            List<String> names = new List<string>();
+            foreach (user u in db.users)
+            {
+                names.Add(u.Fullname);
+            }
+
+            return names;
         }
 
         // GET: api/users/5
         [ResponseType(typeof(user))]
-        public IHttpActionResult Getuser(long id)
+        public async Task<IHttpActionResult> Getuser(int id)
         {
-            user user = db.users.Find(id);
+            db.Configuration.LazyLoadingEnabled = false;
+
+            user user = await db.users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -37,14 +55,14 @@ namespace ChangelogTest.Controllers
 
         // PUT: api/users/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putuser(long id, user user)
+        public async Task<IHttpActionResult> Putuser(int id, user user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.UID)
+            if (id != user.UserID)
             {
                 return BadRequest();
             }
@@ -53,7 +71,7 @@ namespace ChangelogTest.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,7 +90,7 @@ namespace ChangelogTest.Controllers
 
         // POST: api/users
         [ResponseType(typeof(user))]
-        public IHttpActionResult Postuser(user user)
+        public async Task<IHttpActionResult> Postuser(user user)
         {
             if (!ModelState.IsValid)
             {
@@ -80,23 +98,23 @@ namespace ChangelogTest.Controllers
             }
 
             db.users.Add(user);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.UID }, user);
+            return CreatedAtRoute("DefaultApi", new { id = user.UserID }, user);
         }
 
         // DELETE: api/users/5
         [ResponseType(typeof(user))]
-        public IHttpActionResult Deleteuser(long id)
+        public async Task<IHttpActionResult> Deleteuser(int id)
         {
-            user user = db.users.Find(id);
+            user user = await db.users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
             db.users.Remove(user);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(user);
         }
@@ -110,9 +128,9 @@ namespace ChangelogTest.Controllers
             base.Dispose(disposing);
         }
 
-        private bool userExists(long id)
+        private bool userExists(int id)
         {
-            return db.users.Count(e => e.UID == id) > 0;
+            return db.users.Count(e => e.UserID == id) > 0;
         }
     }
 }

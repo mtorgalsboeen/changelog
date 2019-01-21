@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ChangelogTest.Models;
@@ -14,19 +15,22 @@ namespace ChangelogTest.Controllers
 {
     public class UsertypesController : ApiController
     {
-        private TestEntities1 db = new TestEntities1();
+        private FinalModel db = new FinalModel();
 
         // GET: api/Usertypes
         public IQueryable<Usertype> GetUsertypes()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.Usertypes;
         }
 
         // GET: api/Usertypes/5
         [ResponseType(typeof(Usertype))]
-        public IHttpActionResult GetUsertype(int id)
+        public async Task<IHttpActionResult> GetUsertype(int id)
         {
-            Usertype usertype = db.Usertypes.Find(id);
+            db.Configuration.LazyLoadingEnabled = false;
+
+            Usertype usertype = await db.Usertypes.FindAsync(id);
             if (usertype == null)
             {
                 return NotFound();
@@ -37,7 +41,7 @@ namespace ChangelogTest.Controllers
 
         // PUT: api/Usertypes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUsertype(int id, Usertype usertype)
+        public async Task<IHttpActionResult> PutUsertype(int id, Usertype usertype)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +57,7 @@ namespace ChangelogTest.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,7 +76,7 @@ namespace ChangelogTest.Controllers
 
         // POST: api/Usertypes
         [ResponseType(typeof(Usertype))]
-        public IHttpActionResult PostUsertype(Usertype usertype)
+        public async Task<IHttpActionResult> PostUsertype(Usertype usertype)
         {
             if (!ModelState.IsValid)
             {
@@ -80,23 +84,23 @@ namespace ChangelogTest.Controllers
             }
 
             db.Usertypes.Add(usertype);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = usertype.UsertypeID }, usertype);
         }
 
         // DELETE: api/Usertypes/5
         [ResponseType(typeof(Usertype))]
-        public IHttpActionResult DeleteUsertype(int id)
+        public async Task<IHttpActionResult> DeleteUsertype(int id)
         {
-            Usertype usertype = db.Usertypes.Find(id);
+            Usertype usertype = await db.Usertypes.FindAsync(id);
             if (usertype == null)
             {
                 return NotFound();
             }
 
             db.Usertypes.Remove(usertype);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(usertype);
         }
