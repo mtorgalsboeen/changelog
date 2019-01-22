@@ -36,7 +36,7 @@ namespace ChangelogTest.Controllers
         /// Gets the ContentType with the specified ID.
         /// </summary>
         /// <param name="id">The ContentTypes ID.</param>
-        /// <returns>An HTTP response</returns>
+        /// <returns>An HTTP response of type ContentType.</returns>
         [ResponseType(typeof(ContentType))]
         public async Task<IHttpActionResult> GetContentType(int id)
         {
@@ -55,7 +55,7 @@ namespace ChangelogTest.Controllers
         /// </summary>
         /// <param name="id">The ContentTypes ID.</param>
         /// <param name="contentType">A ContentType object.</param>
-        /// <returns></returns>
+        /// <returns>An HTTP response.</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutContentType(int id, ContentType contentType)
         {
@@ -95,7 +95,7 @@ namespace ChangelogTest.Controllers
         /// Inserts a new ContentType.
         /// </summary>
         /// <param name="contentType">A ContentType object.</param>
-        /// <returns>An HTTP response.</returns>
+        /// <returns>An HTTP response of type ContentType.</returns>
         [ResponseType(typeof(ContentType))]
         public async Task<IHttpActionResult> PostContentType(ContentType contentType)
         {
@@ -115,7 +115,7 @@ namespace ChangelogTest.Controllers
         /// Deletes the ContentType with the specified ID.
         /// </summary>
         /// <param name="id">The ContentTypes ID.</param>
-        /// <returns>An HTTP response.</returns>
+        /// <returns>An HTTP response of type ContentType.</returns>
         [ResponseType(typeof(ContentType))]
         public async Task<IHttpActionResult> DeleteContentType(int id)
         {

@@ -481,5 +481,352 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:ChangelogTest.Controllers.ChangelogsController">
+            <summary>
+            Controller for Changelogs.
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ChangelogsController.GetChangelogs">
+            <summary>
+            Gets all Changelogs
+            </summary>
+            <returns>A list of Changelogs.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ChangelogsController.GetChangelog(System.Int32)">
+            <summary>
+            Gets the Changelog with the specified ID.
+            </summary>
+            <param name="id">The ID of the Changelog</param>
+            <returns>An HTTP result of type Changelog</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ChangelogsController.PutChangelog(System.Int32,ChangelogTest.Models.Changelog)">
+            <summary>
+            Updates the Changelog with the specified ID.
+            </summary>
+            <param name="id">The ID of the Changelog.</param>
+            <param name="changelog">A Changelog object.</param>
+            <returns>A HTTP result.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ChangelogsController.PostChangelog(ChangelogTest.Models.Changelog)">
+            <summary>
+            Inserts a new Changelog.
+            </summary>
+            <param name="changelog">A Changelog object.</param>
+            <returns>An HTTP result of type Changelog</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ChangelogsController.DeleteChangelog(System.Int32)">
+            <summary>
+            Deletes the Changelog with the specified ID.
+            </summary>
+            <param name="id">The ID of the Changelog</param>
+            <returns>An HTTP respose of type Changelog</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.ContentsController">
+            <summary>
+            The controller for the Content of the Changelogs.
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentsController.PutContent(System.Int32,ChangelogTest.Models.Content)">
+            <summary>
+            Updates the Content with the specified id.
+            </summary>
+            <param name="id">The ID of the Content</param>
+            <param name="content">A Content object.</param>
+            <returns>An HTTP result.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentsController.PostContent(ChangelogTest.Models.Content)">
+            <summary>
+            Inserts a new instance of Content.
+            </summary>
+            <param name="content">A Content object.</param>
+            <returns>An HTTP response of type Content.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentsController.DeleteContent(System.Int32)">
+            <summary>
+            Deletes the instance of Content with the specified ID.
+            </summary>
+            <param name="id">The Contents ID.</param>
+            <returns>An HTTP response of type Content.</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.ContentTypesController">
+            <summary>
+            The controller for ContentTypes
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentTypesController.GetContentTypes">
+            <summary>
+            Gets all ContentTypes
+            </summary>
+            <returns>A list of ContentTypes.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentTypesController.GetContentType(System.Int32)">
+            <summary>
+            Gets the ContentType with the specified ID.
+            </summary>
+            <param name="id">The ContentTypes ID.</param>
+            <returns>An HTTP response of type ContentType.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentTypesController.PutContentType(System.Int32,ChangelogTest.Models.ContentType)">
+            <summary>
+            Updates the ContentType with the specified ID.
+            </summary>
+            <param name="id">The ContentTypes ID.</param>
+            <param name="contentType">A ContentType object.</param>
+            <returns>An HTTP response.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentTypesController.PostContentType(ChangelogTest.Models.ContentType)">
+            <summary>
+            Inserts a new ContentType.
+            </summary>
+            <param name="contentType">A ContentType object.</param>
+            <returns>An HTTP response of type ContentType.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ContentTypesController.DeleteContentType(System.Int32)">
+            <summary>
+            Deletes the ContentType with the specified ID.
+            </summary>
+            <param name="id">The ContentTypes ID.</param>
+            <returns>An HTTP response of type ContentType.</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.CustomerProductsController">
+            <summary>
+            The controller for Products related to specific Customers.
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomerProductsController.GetCustomerProducts">
+            <summary>
+            Gets all CustomerProducts.
+            </summary>
+            <returns>A list of CustomerProducts.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomerProductsController.GetCustomerProduct(System.Int32)">
+            <summary>
+            Gets the CustomerProduct with the specified ID.
+            </summary>
+            <param name="id">The CustomerProduct ID.</param>
+            <returns>An HTTP response.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomerProductsController.PutCustomerProduct(System.Int32,ChangelogTest.Models.CustomerProduct)">
+            <summary>
+            Updates the CustomerProduct with the specified ID.
+            </summary>
+            <param name="id">The CustomerProducts ID.</param>
+            <param name="customerProduct">A CustomerProduct object.</param>
+            <returns>An HTTP result.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomerProductsController.DeleteCustomerProduct(System.Int32)">
+            <summary>
+            Deletes the CustomerProduct with the specified ID.
+            </summary>
+            <param name="id">The CustomerProduct's ID.</param>
+            <returns>An HTTP response</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.CustomersController">
+            <summary>
+            The controller for Customers.
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomersController.GetCustomers">
+            <summary>
+            Gets all Customers.
+            </summary>
+            <returns>A list of Customers.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomersController.GetCustomer(System.Int32)">
+            <summary>
+            Gets the Customer with the specified ID.
+            </summary>
+            <param name="id">The Customer's ID.</param>
+            <returns>An HTTP response.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomersController.PutCustomer(System.Int32,ChangelogTest.Models.Customer)">
+            <summary>
+            Updates the Customer with the specified ID.
+            </summary>
+            <param name="id">The Customer's ID.</param>
+            <param name="customer">A Customer object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomersController.PostCustomer(ChangelogTest.Models.Customer)">
+            <summary>
+            Inserts a new Customer.
+            </summary>
+            <param name="customer">A Customer Object.</param>
+            <returns>An HTTP response.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.CustomersController.DeleteCustomer(System.Int32)">
+            <summary>
+            Deletes the Customer with the specified ID.
+            </summary>
+            <param name="id">The Customer's ID.</param>
+            <returns>An HTTP response.</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.ProductsController">
+            <summary>
+            Controller for products
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ProductsController.GetProducts">
+            <summary>
+            Gets all products
+            </summary>
+            <returns>A list of products</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ProductsController.GetProduct(System.Int32)">
+            <summary>
+            Gets a specific product
+            </summary>
+            <param name="id">ID of the product</param>
+            <returns>A HTTP result of type Product</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ProductsController.PutProduct(System.Int32,ChangelogTest.Models.Product)">
+            <summary>
+            Updates a specific product
+            </summary>
+            <param name="id">ID of the product</param>
+            <param name="product">The product</param>
+            <returns>A HTTP result of type Product</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ProductsController.PostProduct(ChangelogTest.Models.Product)">
+            <summary>
+            Creates a new product
+            </summary>
+            <param name="product">The product</param>
+            <returns>A HTTP result of type Product</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Deletes a specific product
+            </summary>
+            <param name="id">ID of the product</param>
+            <returns>A HTTP result of type Product</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.UserAccessProductsController">
+            <summary>
+            Controller for accesses to the different products
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UserAccessProductsController.GetUserAccessProducts">
+            <summary>
+            Gets all Accesses
+            </summary>
+            <returns>A list of all the accesses</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UserAccessProductsController.GetUserAccessProduct(System.Int32)">
+            <summary>
+            Gets a specific access
+            </summary>
+            <param name="id">ID of the specific access</param>
+            <returns>A HTTP result of type UserAccessProduct</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UserAccessProductsController.PutUserAccessProduct(System.Int32,ChangelogTest.Models.UserAccessProduct)">
+            <summary>
+            Updates a specific access
+            </summary>
+            <param name="id">ID of the specific access</param>
+            <param name="userAccessProduct">The access object</param>
+            <returns>A HTTP result of type UserAccessProduct</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UserAccessProductsController.PostUserAccessProduct(ChangelogTest.Models.UserAccessProduct)">
+            <summary>
+            Creates a new access
+            </summary>
+            <param name="userAccessProduct">The access object</param>
+            <returns>A HTTP result of type UserAccessProduct</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UserAccessProductsController.DeleteUserAccessProduct(System.Int32)">
+            <summary>
+            Deletes a specific access
+            </summary>
+            <param name="id">ID of the specific access</param>
+            <returns>A HTTP result of type UserAccessProduct</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.usersController">
+            <summary>
+            Controller for users
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.usersController.Getusers">
+            <summary>
+            Gets all non-admin users.
+            </summary>
+            <returns>A list of users.</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.usersController.GetUserByCustomer(System.Int32)">
+            <summary>
+            Gets all users with a specific CustomerID
+            </summary>
+            <param name="customerID">The specific customerID</param>
+            <returns>A list of users</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.usersController.Getuser(System.Int32)">
+            <summary>
+            Gets a specific user
+            </summary>
+            <param name="id">ID of the specific user</param>
+            <returns>A HTTP result of type User</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.usersController.Putuser(System.Int32,ChangelogTest.Models.user)">
+            <summary>
+            Updates a specific user
+            </summary>
+            <param name="id">ID of the specific user</param>
+            <param name="user">The user object</param>
+            <returns>A HTTP result of type User</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.usersController.Postuser(ChangelogTest.Models.user)">
+            <summary>
+            Creates a new user
+            </summary>
+            <param name="user">The user object</param>
+            <returns>A HTTP result of type User</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.usersController.Deleteuser(System.Int32)">
+            <summary>
+            Deletes a specific user
+            </summary>
+            <param name="id">ID of the specific user</param>
+            <returns>A HTTP result of type User</returns>
+        </member>
+        <member name="T:ChangelogTest.Controllers.UsertypesController">
+            <summary>
+            Controller for  usertypes
+            </summary>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UsertypesController.GetUsertypes">
+            <summary>
+            Gets all the usertypes
+            </summary>
+            <returns>A list of usertypes</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UsertypesController.GetUsertype(System.Int32)">
+            <summary>
+            Gets a specific usertype
+            </summary>
+            <param name="id">ID of the specific usertype</param>
+            <returns>A HTTP result of type Usertype</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UsertypesController.PutUsertype(System.Int32,ChangelogTest.Models.Usertype)">
+            <summary>
+            Updates a specifc usertype
+            </summary>
+            <param name="id">ID of the specific usertype</param>
+            <param name="usertype">The usertype object</param>
+            <returns>A HTTP result of type Usertype</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UsertypesController.PostUsertype(ChangelogTest.Models.Usertype)">
+            <summary>
+            Creates a new usertype
+            </summary>
+            <param name="usertype">The usertype object</param>
+            <returns>A HTTP result of type Usertype</returns>
+        </member>
+        <member name="M:ChangelogTest.Controllers.UsertypesController.DeleteUsertype(System.Int32)">
+            <summary>
+            Deletes a specific usertype
+            </summary>
+            <param name="id">ID of the specific usertype</param>
+            <returns>A HTTP result of type Usertype</returns>
+        </member>
     </members>
 </doc>
