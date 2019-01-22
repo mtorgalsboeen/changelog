@@ -28,6 +28,7 @@ namespace ChangelogTest.Controllers
         public IQueryable<Customer> GetCustomers()
         {
             db.Configuration.LazyLoadingEnabled = false;
+
             return db.Customers;
         }
 

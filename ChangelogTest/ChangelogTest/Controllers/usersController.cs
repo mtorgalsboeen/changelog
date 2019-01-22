@@ -24,14 +24,14 @@ namespace ChangelogTest.Controllers
 
         // GET: api/users
         /// <summary>
-        /// Gets all the users except the admins
+        /// Gets all non-admin users.
         /// </summary>
-        /// <returns>A list of users</returns>
-        public IQueryable<user> Getusers()
+        /// <returns>A list of users.</returns>
+        public List<user> Getusers()
         {
             db.Configuration.LazyLoadingEnabled = false;
 
-            return db.users.Where(u => u.UsertypeID == 2);
+            return db.users.Where(u => u.UsertypeID == 2).ToList();
         }
 
         /// <summary>
@@ -39,13 +39,25 @@ namespace ChangelogTest.Controllers
         /// </summary>
         /// <param name="customerID">The specific customerID</param>
         /// <returns>A list of users</returns>
+        //[HttpGet]
+        //[Route("users/GetUsersByCustomer/{customerID}")]
+        //public List<user> GetUserByCustomer(int customerID)
+        //{
+        //    db.Configuration.LazyLoadingEnabled = false;
+
+        //    return db.users.Where(u => u.CustomerID == customerID).ToList();
+        //}
+
         [HttpGet]
         [Route("users/GetUsersByCustomer/{customerID}")]
-        public List<user> GetUserByCustomer(int customerID)
+        [ResponseType(typeof(List<user>))]
+        public async Task<IHttpActionResult> GetUserByCustomer(int customerID)
         {
             db.Configuration.LazyLoadingEnabled = false;
 
-            return db.users.Where(u => u.CustomerID == customerID).ToList();
+            List<user> userList = await db.users.Where(u => u.CustomerID == customerID).ToListAsync();
+
+            return Ok(userList);
         }
 
         // GET: api/users/5

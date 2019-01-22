@@ -26,7 +26,7 @@ namespace ChangelogTest.Controllers
         /// </summary>
         /// <param name="id">The ID of the Content</param>
         /// <param name="content">A Content object.</param>
-        /// <returns></returns>
+        /// <returns>An HTTP result.</returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutContent(int id, Content content)
         {
@@ -66,7 +66,7 @@ namespace ChangelogTest.Controllers
         /// Inserts a new instance of Content.
         /// </summary>
         /// <param name="content">A Content object.</param>
-        /// <returns>An HTTP response.</returns>
+        /// <returns>An HTTP response of type Content.</returns>
         [ResponseType(typeof(Content))]
         public async Task<IHttpActionResult> PostContent(Content content)
         {
@@ -86,7 +86,7 @@ namespace ChangelogTest.Controllers
         /// Deletes the instance of Content with the specified ID.
         /// </summary>
         /// <param name="id">The Contents ID.</param>
-        /// <returns>An HTTP response.</returns>
+        /// <returns>An HTTP response of type Content.</returns>
         [ResponseType(typeof(Content))]
         public async Task<IHttpActionResult> DeleteContent(int id)
         {
