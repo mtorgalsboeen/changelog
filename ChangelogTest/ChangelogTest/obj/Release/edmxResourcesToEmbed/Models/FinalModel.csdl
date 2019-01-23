@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalModelNamespace" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Changelog">
+    <Key>
+      <PropertyRef Name="ChangelogID" />
+    </Key>
+    <Property Name="ChangelogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Author" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK_ChangelogAuthor" FromRole="Changelog" ToRole="users" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ChangelogProduct" FromRole="Changelog" ToRole="Product" />
+    <NavigationProperty Name="Contents" Relationship="Self.FK_ContentChangelog" FromRole="Changelog" ToRole="Content" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="ContentID" />
+    </Key>
+    <Property Name="ContentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChangelogID" Type="Int32" Nullable="false" />
+    <Property Name="ContentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Changelog" Relationship="Self.FK_ContentChangelog" FromRole="Content" ToRole="Changelog" />
+    <NavigationProperty Name="ContentType" Relationship="Self.FK_ContentContentType" FromRole="Content" ToRole="ContentType" />
+  </EntityType>
+  <EntityType Name="ContentType">
+    <Key>
+      <PropertyRef Name="ContentTypeID" />
+    </Key>
+    <Property Name="ContentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContentType1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Contents" Relationship="Self.FK_ContentContentType" FromRole="ContentType" ToRole="Content" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerLogo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CustomerProducts" Relationship="Self.FK_CPCustomer" FromRole="Customer" ToRole="CustomerProduct" />
+    <NavigationProperty Name="users" Relationship="Self.FK_UserCustomer" FromRole="Customer" ToRole="users" />
+  </EntityType>
+  <EntityType Name="CustomerProduct">
+    <Key>
+      <PropertyRef Name="CustomerProductID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CPCustomer" FromRole="CustomerProduct" ToRole="Customer" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_CPProduct" FromRole="CustomerProduct" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Changelogs" Relationship="Self.FK_ChangelogProduct" FromRole="Product" ToRole="Changelog" />
+    <NavigationProperty Name="CustomerProducts" Relationship="Self.FK_CPProduct" FromRole="Product" ToRole="CustomerProduct" />
+    <NavigationProperty Name="UserAccessProducts" Relationship="Self.FK_UAPProduct" FromRole="Product" ToRole="UserAccessProduct" />
+  </EntityType>
+  <EntityType Name="UserAccessProduct">
+    <Key>
+      <PropertyRef Name="UserAccessProductID" />
+    </Key>
+    <Property Name="UserAccessProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_UAPProduct" FromRole="UserAccessProduct" ToRole="Product" />
+    <NavigationProperty Name="user" Relationship="Self.FK_UAPUser" FromRole="UserAccessProduct" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsertypeID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Changelogs" Relationship="Self.FK_ChangelogAuthor" FromRole="users" ToRole="Changelog" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_UserCustomer" FromRole="users" ToRole="Customer" />
+    <NavigationProperty Name="UserAccessProducts" Relationship="Self.FK_UAPUser" FromRole="users" ToRole="UserAccessProduct" />
+    <NavigationProperty Name="Usertype" Relationship="Self.FK_UserUsertype" FromRole="users" ToRole="Usertype" />
+  </EntityType>
+  <EntityType Name="Usertype">
+    <Key>
+      <PropertyRef Name="UsertypeID" />
+    </Key>
+    <Property Name="UsertypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsertypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="users" Relationship="Self.FK_UserUsertype" FromRole="Usertype" ToRole="users" />
+  </EntityType>
+  <Association Name="FK_ChangelogAuthor">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="Changelog" Type="Self.Changelog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Changelog">
+        <PropertyRef Name="Author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangelogProduct">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Changelog" Type="Self.Changelog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Changelog">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContentChangelog">
+    <End Role="Changelog" Type="Self.Changelog" Multiplicity="1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Changelog">
+        <PropertyRef Name="ChangelogID" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="ChangelogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContentContentType">
+    <End Role="ContentType" Type="Self.ContentType" Multiplicity="1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContentType">
+        <PropertyRef Name="ContentTypeID" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="ContentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CPCustomer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerProduct" Type="Self.CustomerProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerProduct">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCustomer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CPProduct">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="CustomerProduct" Type="Self.CustomerProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="CustomerProduct">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UAPProduct">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="UserAccessProduct" Type="Self.UserAccessProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="UserAccessProduct">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UAPUser">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="UserAccessProduct" Type="Self.UserAccessProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAccessProduct">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUsertype">
+    <End Role="Usertype" Type="Self.Usertype" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usertype">
+        <PropertyRef Name="UsertypeID" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="UsertypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Changelogs" EntityType="Self.Changelog" />
+    <EntitySet Name="Contents" EntityType="Self.Content" />
+    <EntitySet Name="ContentTypes" EntityType="Self.ContentType" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="CustomerProducts" EntityType="Self.CustomerProduct" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="UserAccessProducts" EntityType="Self.UserAccessProduct" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="Usertypes" EntityType="Self.Usertype" />
+    <AssociationSet Name="FK_ChangelogAuthor" Association="Self.FK_ChangelogAuthor">
+      <End Role="users" EntitySet="users" />
+      <End Role="Changelog" EntitySet="Changelogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangelogProduct" Association="Self.FK_ChangelogProduct">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Changelog" EntitySet="Changelogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContentChangelog" Association="Self.FK_ContentChangelog">
+      <End Role="Changelog" EntitySet="Changelogs" />
+      <End Role="Content" EntitySet="Contents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContentContentType" Association="Self.FK_ContentContentType">
+      <End Role="ContentType" EntitySet="ContentTypes" />
+      <End Role="Content" EntitySet="Contents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CPCustomer" Association="Self.FK_CPCustomer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerProduct" EntitySet="CustomerProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCustomer" Association="Self.FK_UserCustomer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CPProduct" Association="Self.FK_CPProduct">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="CustomerProduct" EntitySet="CustomerProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UAPProduct" Association="Self.FK_UAPProduct">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="UserAccessProduct" EntitySet="UserAccessProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UAPUser" Association="Self.FK_UAPUser">
+      <End Role="users" EntitySet="users" />
+      <End Role="UserAccessProduct" EntitySet="UserAccessProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUsertype" Association="Self.FK_UserUsertype">
+      <End Role="Usertype" EntitySet="Usertypes" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
