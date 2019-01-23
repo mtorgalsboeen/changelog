@@ -1,6 +1,6 @@
 **Om**
 
-_app-common-form_-komponentet og det tilhørende stilarket _formStyles.css_ tilbyr en kontainer med tittel for former og ett sett med klasser for stilering av form-kontrollene. Hensikten er å kunne få enhetlige former med samme stiluttrykk og å kunne gjøre formene mer vedlikeholdbare og enkle å utvide og endre siden endringen dermed kun trengs å gjennomføres på ett sted.
+_app-common-form_-komponentet og det tilhørende stilarket _formStyles.css_ tilbyr en kontainer med tittel (tittel er valgfritt) for former og ett sett med klasser for stilering av form-kontrollene. Hensikten er å kunne få enhetlige former med samme stiluttrykk og å kunne gjøre formene mer vedlikeholdbare og enkle å utvide og endre siden endringen dermed kun trengs å gjennomføres på ett sted.
 
 **Setup**
 1. Plasser komponentfilene et passende sted: common-form.component.html og common-form.component.ts 
@@ -11,7 +11,7 @@ _app-common-form_-komponentet og det tilhørende stilarket _formStyles.css_ tilb
 **Bruk**
 
 Legg formen eller form-komponentet som et barn av 'app-common-form'-komponentet. 
-* En tittel angis ved å sette header-attibutten til ønsket tittel. 
+* En tittel angis ved å sette header-attibutten til ønsket tittel. Tittel er ikke obligatorisk
 * Et input-element kan stileres med klassen formInput. 
 * Knapper kan stileres med formButton. 
 * p-tagger kan stileres med formError eller formMessage for å stileres med tanke på visning av feilmeldinger eller informasjonsmeldinger (slik som en beskjed som opplyser om at formen ble sendt inn).
