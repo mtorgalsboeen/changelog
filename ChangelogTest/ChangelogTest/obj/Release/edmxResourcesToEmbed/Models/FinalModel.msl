@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalModelNamespaceStoreContainer" CdmEntityContainer="FinalModel">
+    <EntitySetMapping Name="Changelogs">
+      <EntityTypeMapping TypeName="FinalModelNamespace.Changelog">
+        <MappingFragment StoreEntitySet="Changelog">
+          <ScalarProperty Name="ChangelogID" ColumnName="ChangelogID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contents">
+      <EntityTypeMapping TypeName="FinalModelNamespace.Content">
+        <MappingFragment StoreEntitySet="Content">
+          <ScalarProperty Name="ContentID" ColumnName="ContentID" />
+          <ScalarProperty Name="ChangelogID" ColumnName="ChangelogID" />
+          <ScalarProperty Name="ContentTypeID" ColumnName="ContentTypeID" />
+          <ScalarProperty Name="Content1" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContentTypes">
+      <EntityTypeMapping TypeName="FinalModelNamespace.ContentType">
+        <MappingFragment StoreEntitySet="ContentType">
+          <ScalarProperty Name="ContentTypeID" ColumnName="ContentTypeID" />
+          <ScalarProperty Name="ContentType1" ColumnName="ContentType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="FinalModelNamespace.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerLogo" ColumnName="CustomerLogo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerProducts">
+      <EntityTypeMapping TypeName="FinalModelNamespace.CustomerProduct">
+        <MappingFragment StoreEntitySet="CustomerProduct">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CustomerProductID" ColumnName="CustomerProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="FinalModelNamespace.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAccessProducts">
+      <EntityTypeMapping TypeName="FinalModelNamespace.UserAccessProduct">
+        <MappingFragment StoreEntitySet="UserAccessProduct">
+          <ScalarProperty Name="UserAccessProductID" ColumnName="UserAccessProductID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="FinalModelNamespace.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="UsertypeID" ColumnName="UsertypeID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usertypes">
+      <EntityTypeMapping TypeName="FinalModelNamespace.Usertype">
+        <MappingFragment StoreEntitySet="Usertype">
+          <ScalarProperty Name="UsertypeID" ColumnName="UsertypeID" />
+          <ScalarProperty Name="UsertypeName" ColumnName="UsertypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

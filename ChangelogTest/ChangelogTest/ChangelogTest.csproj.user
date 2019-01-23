@@ -19,6 +19,7 @@
     <WebStackScaffolding_DbContextTypeFullName>ChangelogTest.Models.FinalModel</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>True</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_DbContextDialogWidth>600</WebStackScaffolding_DbContextDialogWidth>
+    <NameOfLastUsedPublishProfile>Changelog20190122013235 - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="FinalModel-Web.config Connection String" description="FinalModel Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.FinalModel.csdl|res://*/Models.FinalModel.ssdl|res://*/Models.FinalModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:hiofbachelorgryuppe12.database.windows.net,1433;initial catalog=Test;persist security info=True;user id=Fredrik;password=CojlonlolcogCe2;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\IT\\Bachelor\\git\\BO19-G12-Changelog-System\\ChangelogTest\\ChangelogTest\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FinalModel']/@connectionString" />
+  </parameter>
+</parameters>
