@@ -1,0 +1,105 @@
+/*Common styling for all forms used in ChangelogSystem*/
+
+/*====COLORS==========*/
+/*eSmart-green: A6D900*/
+/*eSmart-dark-gray: 4C4C4C*/
+/*eSmart-light-gray: C4C4C4*/
+
+.formContainer{
+    background-color: #b5b5b5;
+    padding: 40px;
+    padding-top:0;
+    padding-right:70px;
+    padding-left:70px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: fit-content;
+    height: fit-content;
+}
+
+.formInput{
+  display:block;    
+  margin-bottom:25px;
+}
+
+.formError{
+ font-style:italic; 
+}
+
+.formMessage{
+  height:100px;
+}
+.formInput:last-of-type{
+  margin-bottom:70px;
+}
+
+.formTitle{
+  background-color:#A6D900;
+  padding:10px;
+  text-align:center;
+  text-shadow: 2px 2px 7px rgba(32, 32, 32, 0.39);
+  color:#4C4C4C;
+}
+
+.formContent{
+  margin-top:70px;
+  font-size:1.2em;
+}
+
+
+/*Material button styling*/
+/*Based on https://codepen.io/sebj54/pen/oxluI with some adjustments*/
+
+.formButton{
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+  border-width: 0;
+  outline: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  margin-right:25px;
+  background-color: #A6D900;
+  transition: background-color .3s;
+  color:#4C4C4C;
+}
+
+.formButton:hover{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .6);
+}
+
+.formButton > * {
+  position: relative;
+}
+
+.formButton:before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+  width: 0;
+  padding-top: 0;
+
+  border-radius: 100%;
+
+  background-color: rgba(236, 240, 241, .3);
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.formButton:active:before {
+  width: 120%;
+  padding-top: 120%;
+
+  transition: width .2s ease-out, padding-top .2s ease-out;
+} 
