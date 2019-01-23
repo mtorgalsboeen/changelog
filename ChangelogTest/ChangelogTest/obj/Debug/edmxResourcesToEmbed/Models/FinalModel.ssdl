@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalModelNamespace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Changelog">
+    <Key>
+      <PropertyRef Name="ChangelogID" />
+    </Key>
+    <Property Name="ChangelogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Author" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="ContentID" />
+    </Key>
+    <Property Name="ContentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChangelogID" Type="int" Nullable="false" />
+    <Property Name="ContentTypeID" Type="int" Nullable="false" />
+    <Property Name="Content" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContentType">
+    <Key>
+      <PropertyRef Name="ContentTypeID" />
+    </Key>
+    <Property Name="ContentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContentType" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CustomerLogo" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="CustomerProduct">
+    <Key>
+      <PropertyRef Name="CustomerProductID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="CustomerProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ProductDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="UserAccessProduct">
+    <Key>
+      <PropertyRef Name="UserAccessProductID" />
+    </Key>
+    <Property Name="UserAccessProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="200" />
+    <Property Name="Firstname" Type="varchar" MaxLength="100" />
+    <Property Name="Lastname" Type="varchar" MaxLength="100" />
+    <Property Name="UsertypeID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usertype">
+    <Key>
+      <PropertyRef Name="UsertypeID" />
+    </Key>
+    <Property Name="UsertypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsertypeName" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_ChangelogAuthor">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="Changelog" Type="Self.Changelog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Changelog">
+        <PropertyRef Name="Author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangelogProduct">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Changelog" Type="Self.Changelog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Changelog">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContentChangelog">
+    <End Role="Changelog" Type="Self.Changelog" Multiplicity="1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Changelog">
+        <PropertyRef Name="ChangelogID" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="ChangelogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContentContentType">
+    <End Role="ContentType" Type="Self.ContentType" Multiplicity="1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContentType">
+        <PropertyRef Name="ContentTypeID" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="ContentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CPCustomer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerProduct" Type="Self.CustomerProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerProduct">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CPProduct">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="CustomerProduct" Type="Self.CustomerProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="CustomerProduct">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UAPProduct">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="UserAccessProduct" Type="Self.UserAccessProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="UserAccessProduct">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UAPUser">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="UserAccessProduct" Type="Self.UserAccessProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAccessProduct">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCustomer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUsertype">
+    <End Role="Usertype" Type="Self.Usertype" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usertype">
+        <PropertyRef Name="UsertypeID" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="UsertypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalModelNamespaceStoreContainer">
+    <EntitySet Name="Changelog" EntityType="Self.Changelog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContentType" EntityType="Self.ContentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerProduct" EntityType="Self.CustomerProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAccessProduct" EntityType="Self.UserAccessProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usertype" EntityType="Self.Usertype" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ChangelogAuthor" Association="Self.FK_ChangelogAuthor">
+      <End Role="users" EntitySet="users" />
+      <End Role="Changelog" EntitySet="Changelog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangelogProduct" Association="Self.FK_ChangelogProduct">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Changelog" EntitySet="Changelog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContentChangelog" Association="Self.FK_ContentChangelog">
+      <End Role="Changelog" EntitySet="Changelog" />
+      <End Role="Content" EntitySet="Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContentContentType" Association="Self.FK_ContentContentType">
+      <End Role="ContentType" EntitySet="ContentType" />
+      <End Role="Content" EntitySet="Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CPCustomer" Association="Self.FK_CPCustomer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerProduct" EntitySet="CustomerProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CPProduct" Association="Self.FK_CPProduct">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="CustomerProduct" EntitySet="CustomerProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UAPProduct" Association="Self.FK_UAPProduct">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="UserAccessProduct" EntitySet="UserAccessProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UAPUser" Association="Self.FK_UAPUser">
+      <End Role="users" EntitySet="users" />
+      <End Role="UserAccessProduct" EntitySet="UserAccessProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCustomer" Association="Self.FK_UserCustomer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUsertype" Association="Self.FK_UserUsertype">
+      <End Role="Usertype" EntitySet="Usertype" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
