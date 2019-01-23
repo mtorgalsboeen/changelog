@@ -3,7 +3,7 @@
 _app-common-form_-komponentet og det tilhørende stilarket _formStyles.css_ tilbyr en kontainer med tittel for former og ett sett med klasser for stilering av form-kontrollene. Hensikten er å kunne få enhetlige former med samme stiluttrykk og å kunne gjøre formene mer vedlikeholdbare og enkle å utvide og endre siden endringen dermed kun trengs å gjennomføres på ett sted.
 
 **Setup**
-1. Plasser komponentfilene et passende sted: common-form.component.css, common-form.component.css og common-form.component.css 
+1. Plasser komponentfilene et passende sted: common-form.component.html og common-form.component.ts 
 1. Legg til 'CommonFormComponent' i declarations-listen til app.module.ts
 1. Legg stilarket formStyles.css et passende sted
 1. Importer stilarket til det globale stilarket (src/styles.css): @Import 'FILSTI_TIL_FORMSTYLES_CSS'
