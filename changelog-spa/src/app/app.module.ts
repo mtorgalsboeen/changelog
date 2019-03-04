@@ -20,6 +20,7 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { DataloaderComponent } from './dataloader/dataloader.component';
 import {ShowIfDirective } from './directives/show-if.directive';
 import { InViewportModule } from '@thisissoon/angular-inviewport';
+import { ImgLoaderDirective } from './addcustomer/imgLoader.directive';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { InViewportModule } from '@thisissoon/angular-inviewport';
       HomeComponent,
       UsersComponent,
       AddcustomerComponent,
-     ShowIfDirective 
+     ShowIfDirective,
+     ImgLoaderDirective
    ],
    imports: [
       BrowserModule,

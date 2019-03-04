@@ -13,7 +13,6 @@ export class ShowIfDirective {
 
   //Allows the directive to be used like this [appShowIf] = booleanExpression
   @Input('appShowIf') set condition(boolExpr:boolean){
-    console.log("changed property: " + boolExpr);
     this.renderer.setElementStyle(this.element.nativeElement,'visibility', boolExpr ? 'visible' : 'hidden');
   }
   constructor(public element:ElementRef, public renderer:Renderer) {

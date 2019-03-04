@@ -1,12 +1,13 @@
-import { Component,ViewChild, ElementRef} from '@angular/core';
+import { Component,ViewChild, ElementRef, TemplateRef, OnInit} from '@angular/core';
 import { Customer } from './customer.model';
 import { NgForm, AbstractControl } from '@angular/forms';
 import { CustomHttpClientService } from '../services/custom-http-client-service';
+import { ImgLoaderDirective } from './imgLoader.directive';
 
 @Component({
   selector: 'app-add-change-customer',
   templateUrl: './addcustomer.component.html',
-  styleUrls: ['./addcustomer.component.css']
+  styleUrls: ['./addcustomer.component.css'],
 })
 
 /**
@@ -18,6 +19,8 @@ import { CustomHttpClientService } from '../services/custom-http-client-service'
 export class AddcustomerComponent{
   @ViewChild("name") nameElem:ElementRef
   @ViewChild("urlInfo") urlInfoElem:ElementRef;
+  @ViewChild("imgTemp") imgTemplate:TemplateRef<any>; 
+  @ViewChild(ImgLoaderDirective) imgLoaderCont: ImgLoaderDirective;
   
   readonly ADDED_MSG_DURATION = 1000;
   readonly MSG_URL_INVALID_FORMAT = "Invalid url-format";
@@ -31,34 +34,57 @@ export class AddcustomerComponent{
   urlEmpty = false;
 
   //Since we havent tried to load the image, both are false
-  foundImageInURL = false;
-  notFoundImageInURL = false;
+  triedAndFoundImgInUrl = false;
+  triedAndNotFoundImgInUrl = false; 
 
   showAddedMsg = false;
 
-
   constructor(private httpClient:CustomHttpClientService) { 
-    this.customer = new Customer();
+    if(this.customer == null)
+      this.customer = new Customer();
   }
 
-  //Called when the image-element enters the DOM, witch also means that the image starts loading
+  ngOnInit(){
+    this.insertImageElem();
+  }
+
+  insertImageElem(){
+    this.imgLoaderCont.viewContainerRef.createEmbeddedView(this.imgTemplate);
+
+  }
+
+  //When the image-element enters/leaves the DOM
    imgOnViewportChange(imgInViewport:boolean){
-    this.urlInfoElem.nativeElement.innerHTML = this.MSG_URL_LOADING_IMG;
+     if(this.triedAndFoundImgInUrl)
+      this.urlInfoElem.nativeElement.innerHTML = "";
+     else
+      this.urlInfoElem.nativeElement.innerHTML = imgInViewport ? this.MSG_URL_LOADING_IMG : "";
   }
   
-  //Called by an img-element when the logo from the url is a valid logo
   //See the asociated template-file for more information*/
-  imgFound(){
-    this.foundImageInURL = true; 
-     this.urlInfoElem.nativeElement.innerHTML = "";
+  imgLoaded(){
+    this.triedAndFoundImgInUrl = true; 
+    this.triedAndNotFoundImgInUrl = false;
+    this.urlInfoElem.nativeElement.innerHTML = "";
   }
 
-  imgNotFound(){
-     this.notFoundImageInURL = true;
-     this.urlInfoElem.nativeElement.innerHTML = this.MSG_URL_NOT_POINT_TO_IMG;
+  imgFailedToLoad(){
+    var notRetriedToLoadImage = !this.triedAndNotFoundImgInUrl;
+    if(notRetriedToLoadImage){ //to avoid constantly readding the image
+      //Re-adds the image-loader
+      this.imgLoaderCont.viewContainerRef.clear();
+      this.insertImageElem();
+
+      this.triedAndNotFoundImgInUrl = true;
+      this.triedAndFoundImgInUrl = false;
+    }
+    else{
+      this.urlInfoElem.nativeElement.innerHTML = this.MSG_URL_NOT_POINT_TO_IMG;
+    }
   }
 
-  //Validates and possibly show an error for the input when input looses focus 
+
+  //Validates and possibly show an error for the input when it looses focus 
   onBlur(formElem:NgForm){
     switch(formElem.name){
       case "name":
@@ -85,7 +111,7 @@ export class AddcustomerComponent{
     this.nameEmpty = nameFormControl.value == undefined;
     this.urlEmpty = logoURLFormControl.value == undefined;
 
-    if(form.valid && this.foundImageInURL){
+    if(form.valid && this.triedAndFoundImgInUrl){
       this.tryRegistrate();
     }
 

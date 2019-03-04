@@ -12,18 +12,18 @@
     (blur)="onBlur(logoURL)"
     placeholder="Logo for URL" [pattern]="urlRegex" required /> 
   <p [appShowIf]="urlEmpty" class="formError">The url cannot be empty</p>
-
   <p #urlInfo></p>
 
   <!--LOADING AND DISPLAYING IMAGE--> 
   <div [appShowIf]="logoURL.valid" id="imgPrev">
-      <p [appShowIf]="foundImageInURL && logoURL.valid">Logo OK. Preview:</p>
+      <p [appShowIf]="triedAndFoundImgInUrl && logoURL.valid">Logo OK. Preview:</p>
       <!--Tries to load the image, and if valid displays it-->
-      <img *ngIf="logoURL.valid" [appShowIf]="foundImageInURL" id="logoPreview" src="{{customer.CustomerLogo}}" 
-        snInViewport
-        (inViewportChange)="imgOnViewportChange($event)"
-        (load)="imgFound()" (error)="imgNotFound()"/> 
+
+      <ng-template appImgLoader>
+
+      </ng-template>
   </div>
+
 
   <div class="formMessages">
       <p [appShowIf]="showAddedMsg">New customer added</p>
@@ -33,3 +33,10 @@
   <button type="button" class="formButton">Cancel</button>
 
 </form> 
+
+
+<ng-template #imgTemp>
+      <img #img *ngIf="logoURL.valid" [appShowIf]="triedAndFoundImgInUrl" id="logoPreview" src="{{customer.CustomerLogo}}" 
+        snInViewport
+        (inViewportChange)="imgOnViewportChange($event)" (load)="imgLoaded()" (error)="imgFailedToLoad()"/> 
+</ng-template>
