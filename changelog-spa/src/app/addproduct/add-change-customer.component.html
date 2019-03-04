@@ -1,0 +1,33 @@
+<form #customerForm="ngForm" (ngSubmit)="onSubmit(customerForm)">
+  <!--NAME-->
+  <input #name="ngModel" [(ngModel)]="customer.name" name="name" class="formInput"
+    type="text" aria-label="Customer name" 
+    (blur)="onBlur(name)"
+    placeholder="Customer name" required autofocus/>
+  <p [appShowIf]="nameEmpty" class="formError">The name cannot be empty</p>
+
+  <!--URL-->
+  <input #logoURL="ngModel" [(ngModel)]="customer.logoURL" name="logoURL" class="formInput"
+     aria-label="Logo for URL"  
+    (blur)="onBlur(logoURL)"
+    placeholder="Logo for URL" [pattern]="urlRegex" required /> 
+  <p [appShowIf]="urlEmpty" class="formError">The url cannot be empty</p>
+
+  <p #urlError></p>
+
+  <!--LOADING AND DISPLAYING IMAGE--> 
+  <div [appShowIf]="logoURL.valid" id="imgPrev">
+      <p [appShowIf]="foundImageInURL && logoURL.valid">Preview of logo:</p>
+      <!--Tries to load the image, and if valid displays it-->
+      <img *ngIf="logoURL.valid" [appShowIf]="foundImageInURL" id="logoPreview" src="{{customer.logoURL}}" 
+        (load)="imgFound()" (error)="imgNotFound()"/> 
+  </div>
+
+  <div class="formMessages">
+      <p [appShowIf]="showAddedMsg">New customer added</p>
+  </div>
+
+  <button type="submit" class="formButton">Add customer</button> 
+  <button type="button" class="formButton">Cancel</button>
+
+</form> 

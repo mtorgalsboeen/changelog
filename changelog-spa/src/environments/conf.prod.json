@@ -1,0 +1,11 @@
+{
+  "httpRequest":{
+    "apiUrl":"http://localhost:3000",
+    "minLoadingMillis":400,
+    "delayBetweenEachRetryMillis":4000,
+    "numRetries":4
+  },
+  "uiMessages":{
+    "httpRequestFailed":"Could not load the requested resource"
+  }
+}

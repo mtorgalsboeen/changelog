@@ -1,0 +1,13 @@
+{
+  "httpRequest":{
+    "apiUrl":"https://changelog20190122013235.azurewebsites.net/api",
+    "minLoadingMillis":500,
+    "delayBetweenEachRetryMillis":1000,
+    "numRetries":1
+  },
+  "uiMessages":{
+    "httpRequestFailed":"Could not load the requested resource",
+    "httpLoading":"Loading...",
+    "noNetwork":"No internet-connection..."
+  }
+}
