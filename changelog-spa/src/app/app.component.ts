@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
-import { AlertifyService } from './_services/alertify.service';
-import { Router } from '@angular/router';
+import {  JwtHelperService  } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-root',
@@ -9,28 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  model: any = {};
+  jwtHelper = new JwtHelperService();
 
-  constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-  }
-
-  login() {
-    this.authService.login(this.model).subscribe(next => {
-      this.alertify.success('Logged in successfully');
-    }, error => {
-      this.alertify.error(error);
-    }, () => {
-      this.router.navigate(['/members']);
-    });
-  }
-  loggedIn() {
-    return this.authService.loggedIn();
-  }
-  logout() {
-    localStorage.removeItem('token');
-    this.alertify.message('logged out');
-    this.router.navigate(['/home']);
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authService.decodedToken = this.jwtHelper.decodeToken(token);
+    }
   }
 }
