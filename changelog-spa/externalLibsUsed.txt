@@ -1,0 +1,2 @@
+[angular-inviewport]- tilbyr callback hver gang et element forlater eller blir lagt til i DOM
+[ng-connection-service] - tilbyr en maate for aa kontrollere om applikasjonen har nett

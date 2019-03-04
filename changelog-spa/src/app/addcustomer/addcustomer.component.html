@@ -1,23 +1,35 @@
-<div class="col-xs-1" align="center">
-    <div class="container">
-        <form class="form-inline my-2 my-lg-0" (ngSubmit)="addCustomer()">
-            <div class="input-group form-group">
-              <input class="form-control mr-sm-2" type="text" name="newCustomer" 
-                placeholder="New Customer" required [(ngModel)]="model.newCustomer">
-            </div>
-            <div class="form-group">
-              <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0 mt-3" type="submit">Add Customer</button>
-            </div>
-          </form>
-    </div>
-    <br/>
-    <div>
-        <img src="//logo.clearbit.com/rema.no" height="50" width="250"><h3>Rema 1000<br/><button class="btn btn-danger my-2 my-sm-0 mt-3">Delete</button></h3>
-        <br/>
-        <img src="//logo.clearbit.com/norsk-tipping.no" height="50" width="250"><h3>Norsk Tipping<br/><button class="btn btn-danger my-2 my-sm-0 mt-3">Delete</button></h3>
-        <br/>
-        <img src="//logo.clearbit.com/norskeskog.com" height="50" width="250"><h3>Norske Skog<br/><button class="btn btn-danger my-2 my-sm-0 mt-3">Delete</button></h3>
-        <br/>
-        <img src="//logo.clearbit.com/halden.kommune.no/Sider/side.aspx" height="50" width="250"><h3>Halden Kommune<br/><button class="btn btn-danger my-2 my-sm-0 mt-3">Delete</button></h3>
-    </div>
+<form #customerForm="ngForm" (ngSubmit)="onSubmit(customerForm)">
+  <!--NAME-->
+  <input #name="ngModel" [(ngModel)]="customer.CustomerName" name="name" class="formInput"
+    type="text" aria-label="Customer name" 
+    (blur)="onBlur(name)"
+    placeholder="Customer name" required autofocus/>
+  <p [appShowIf]="nameEmpty" class="formError">The name cannot be empty</p>
+
+  <!--URL-->
+  <input #logoURL="ngModel" [(ngModel)]="customer.CustomerLogo" name="logoURL" class="formInput"
+     aria-label="Logo for URL"  
+    (blur)="onBlur(logoURL)"
+    placeholder="Logo for URL" [pattern]="urlRegex" required /> 
+  <p [appShowIf]="urlEmpty" class="formError">The url cannot be empty</p>
+
+  <p #urlInfo></p>
+
+  <!--LOADING AND DISPLAYING IMAGE--> 
+  <div [appShowIf]="logoURL.valid" id="imgPrev">
+      <p [appShowIf]="foundImageInURL && logoURL.valid">Logo OK. Preview:</p>
+      <!--Tries to load the image, and if valid displays it-->
+      <img *ngIf="logoURL.valid" [appShowIf]="foundImageInURL" id="logoPreview" src="{{customer.CustomerLogo}}" 
+        snInViewport
+        (inViewportChange)="imgOnViewportChange($event)"
+        (load)="imgFound()" (error)="imgNotFound()"/> 
   </div>
+
+  <div class="formMessages">
+      <p [appShowIf]="showAddedMsg">New customer added</p>
+  </div>
+
+  <button type="submit" class="formButton">Add customer</button> 
+  <button type="button" class="formButton">Cancel</button>
+
+</form> 

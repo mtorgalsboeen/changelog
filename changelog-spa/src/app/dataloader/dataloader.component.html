@@ -1,0 +1,28 @@
+<div id="contentCont" *ngIf="shouldShow">
+
+  <ng-container [ngSwitch]="status">
+    <ng-container *ngSwitchCase="Status.Loading">
+      <i id="icon" class="fas fa-sync fa-spin"></i>
+      <span class="sr-only">{{loadingMsg}}</span>
+
+     <p #info id="info-text">{{loadingMsg}}</p>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="Status.ServerError">
+      <i id="icon" class="fas fa-exclamation-circle"></i>
+      <span class="sr-only">{{errorMsg}}</span>
+
+     <p #info id="info-text">{{errorMsg}}</p>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="Status.NetworkError">
+      <i id="icon" class="noNetwork"></i>
+      <span class="sr-only">{{noNetworkMsg}}</span>
+
+     <p #info id="info-text">{{noNetworkMsg}}</p>
+    </ng-container>
+  </ng-container>
+
+</div>
+
+<div id="blurOverlay" *ngIf="shouldShow"></div>

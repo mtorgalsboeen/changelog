@@ -13,21 +13,25 @@ import { ChangelogComponent } from './changelog/changelog.component';
 import { appRoutes } from './routes';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
-import { AddproductComponent } from './addproduct/addproduct.component';
 import { AddcustomerComponent } from './addcustomer/addcustomer.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AuthService } from './_services/auth.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { DataloaderComponent } from './dataloader/dataloader.component';
+import {ShowIfDirective } from './directives/show-if.directive';
+import { InViewportModule } from '@thisissoon/angular-inviewport';
+
 
 @NgModule({
    declarations: [
       AppComponent,
+      DataloaderComponent,
       LoginComponent,
       ChangelogComponent,
       HomeComponent,
       UsersComponent,
-      AddproductComponent,
-      AddcustomerComponent
+      AddcustomerComponent,
+     ShowIfDirective 
    ],
    imports: [
       BrowserModule,
@@ -35,7 +39,8 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
       HttpClientModule,
       FormsModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      InViewportModule
    ],
    providers: [
       AuthService,
