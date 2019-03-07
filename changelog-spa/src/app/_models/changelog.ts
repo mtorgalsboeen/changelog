@@ -1,5 +1,9 @@
 export interface Changelog {
-    id: number;
-    title: string;
-    content: string;
+    ChangelogID: number;
+    ProductID: number;
+    ProductName: string;
+    Author: number;
+    Date: Date;
+    Bugfixes: string;
+    NewFeatures: string;
 }

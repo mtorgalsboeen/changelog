@@ -1,3 +1,9 @@
-<p>
-  changelog works!
-</p>
+<div class="container mt-5">
+  <div class="row">
+    <div *ngFor="let changelog of changelogs" class="col-lg-2 col-md-3 col-sm-6">
+      <p>{{changelog.ProductName}}</p>
+      <p>{{changelog.ProductID}}</p>
+      <p>{{changelog.Author}}</p>
+    </div>
+  </div>
+</div>

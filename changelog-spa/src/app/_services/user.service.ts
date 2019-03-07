@@ -18,7 +18,7 @@ export class ChangelogService {
 
 constructor(private http: HttpClient) {}
 getUsers(): Observable<Changelog[]> {
-  return this.http.get<Changelog[]>(this.baseUrl + 'users', httpOptions);
+  return this.http.get<Changelog[]>(this.baseUrl + 'changelogs', httpOptions);
 }
 
 getUser(id): Observable<Changelog> {
